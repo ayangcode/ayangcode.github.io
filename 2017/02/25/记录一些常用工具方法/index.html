@@ -89,23 +89,20 @@
 
 <meta name="description" content="记录每一点一滴。
 
-hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
-12345678910111213141516171819202122232425262728.h文件+ (UIColor *) hexColorWithString: (NSString *)str&amp;#123;">
+hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录iOS一些通用工具方法(不定时更新)...">
 <meta property="og:url" content="http://yoursite.com/2017/02/25/记录一些常用工具方法/index.html">
 <meta property="og:site_name" content="Daily life">
 <meta property="og:description" content="记录每一点一滴。
 
-hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
-12345678910111213141516171819202122232425262728.h文件+ (UIColor *) hexColorWithString: (NSString *)str&amp;#123;">
-<meta property="og:updated_time" content="2017-02-25T10:41:32.000Z">
+hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;">
+<meta property="og:updated_time" content="2017-02-25T10:44:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录iOS一些通用工具方法(不定时更新)...">
 <meta name="twitter:description" content="记录每一点一滴。
 
-hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
-12345678910111213141516171819202122232425262728.h文件+ (UIColor *) hexColorWithString: (NSString *)str&amp;#123;">
+hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;">
 
 
 
@@ -379,6 +376,7 @@ hexColor 配色常用123.m文件 (通过创建分类的方式)+ (UIColor *) hexC
 <p>记录每一点一滴。</p>
 </blockquote>
 <h4 id="hexColor-配色常用"><a href="#hexColor-配色常用" class="headerlink" title="hexColor 配色常用"></a>hexColor 配色常用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.m文件 (通过创建分类的方式)</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">.h文件</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str</div><div class="line">&#123;</div><div class="line">    NSString *cString = [[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];</div><div class="line">    // String should be 6 or 8 charactersif ([cString length] &lt; 6) return [UIColor blackColor];</div><div class="line">    // strip 0X if it appearsif ([cString hasPrefix:@&quot;0X&quot;]) cString = [cString substringFromIndex:2];</div><div class="line">    if ([cString hasPrefix:@&quot;#&quot;]) cString = [cString substringFromIndex:1];</div><div class="line">    if ([cString length] != 6) return [UIColor blackColor];</div><div class="line"></div><div class="line">    // Separate into r, g, b substrings</div><div class="line">    NSRange range;</div><div class="line">    range.location = 0;</div><div class="line">    range.length = 2;</div><div class="line">    NSString *rString = [cString substringWithRange:range];</div><div class="line">    range.location = 2;</div><div class="line">    NSString *gString = [cString substringWithRange:range];</div><div class="line">    range.location = 4;</div><div class="line">    NSString *bString = [cString substringWithRange:range];</div><div class="line">    // Scan values</div><div class="line">    unsigned int r, g, b;</div><div class="line"></div><div class="line">    [[NSScanner scannerWithString:rString] scanHexInt:&amp;r];</div><div class="line">    [[NSScanner scannerWithString:gString] scanHexInt:&amp;g];</div><div class="line">    [[NSScanner scannerWithString:bString] scanHexInt:&amp;b];</div><div class="line"></div><div class="line">    return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="iOS中通过color创建一张纯色的图片并且可以设置大小："><a href="#iOS中通过color创建一张纯色的图片并且可以设置大小：" class="headerlink" title="iOS中通过color创建一张纯色的图片并且可以设置大小："></a>iOS中通过color创建一张纯色的图片并且可以设置大小：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.h文件 (通过创建UIImage的分类实现方法)</div><div class="line">/**</div><div class="line">* 通过size生成图片</div><div class="line">**/</div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color</div><div class="line">&#123;</div><div class="line">    // 准备绘制环境</div><div class="line">    UIGraphicsBeginImageContext(size);</div><div class="line">    // 获取上下文</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    // 设置颜色</div><div class="line">    CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">    // 设置渲染范围</div><div class="line">    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));</div><div class="line">    // 取得图片</div><div class="line">    UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    // 结束绘制</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line"></div><div class="line">    return colorImg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
