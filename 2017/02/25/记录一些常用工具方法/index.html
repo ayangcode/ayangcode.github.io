@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,tools," />
 
 
 
@@ -87,16 +87,25 @@
 
 
 
-<meta name="description" content="简单的生活，简单的我。">
+<meta name="description" content="记录每一点一滴。
+
+iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
+123456789101112131415161718192021.m文件+ (UI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录一些常用工具方法">
+<meta property="og:title" content="记录iOS一些通用工具方法(不定时更新)...">
 <meta property="og:url" content="http://yoursite.com/2017/02/25/记录一些常用工具方法/index.html">
 <meta property="og:site_name" content="Daily life">
-<meta property="og:description" content="简单的生活，简单的我。">
-<meta property="og:updated_time" content="2017-02-25T09:38:42.000Z">
+<meta property="og:description" content="记录每一点一滴。
+
+iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
+123456789101112131415161718192021.m文件+ (UI">
+<meta property="og:updated_time" content="2017-02-25T09:53:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录一些常用工具方法">
-<meta name="twitter:description" content="简单的生活，简单的我。">
+<meta name="twitter:title" content="记录iOS一些通用工具方法(不定时更新)...">
+<meta name="twitter:description" content="记录每一点一滴。
+
+iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
+123456789101112131415161718192021.m文件+ (UI">
 
 
 
@@ -130,7 +139,7 @@
 
 
 
-  <title> 记录一些常用工具方法 | Daily life </title>
+  <title> 记录iOS一些通用工具方法(不定时更新)... | Daily life </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +302,7 @@
             
             
               
-                记录一些常用工具方法
+                记录iOS一些通用工具方法(不定时更新)...
               
             
           </h1>
@@ -318,6 +327,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -344,7 +375,12 @@
       
 
       
-        
+        <blockquote>
+<p>记录每一点一滴。</p>
+</blockquote>
+<h4 id="iOS中通过color创建一张纯色的图片并且可以设置大小："><a href="#iOS中通过color创建一张纯色的图片并且可以设置大小：" class="headerlink" title="iOS中通过color创建一张纯色的图片并且可以设置大小："></a>iOS中通过color创建一张纯色的图片并且可以设置大小：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.h文件 (通过创建UIImage的分类实现方法)</div><div class="line">/**</div><div class="line">* 通过size生成图片</div><div class="line">**/</div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color</div><div class="line">&#123;</div><div class="line">// 准备绘制环境</div><div class="line">UIGraphicsBeginImageContext(size);</div><div class="line">// 获取上下文</div><div class="line">CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">// 设置颜色</div><div class="line">CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">// 设置渲染范围</div><div class="line">CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));</div><div class="line">// 取得图片</div><div class="line">UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">// 结束绘制</div><div class="line">UIGraphicsEndImageContext();</div><div class="line"></div><div class="line">return colorImg;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -364,6 +400,14 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/tools/" rel="tag"># tools</a>
+          
+        </div>
       
 
       
@@ -429,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -454,7 +507,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -463,7 +516,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -499,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS中通过color创建一张纯色的图片并且可以设置大小："><span class="nav-number">1.</span> <span class="nav-text">iOS中通过color创建一张纯色的图片并且可以设置大小：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
