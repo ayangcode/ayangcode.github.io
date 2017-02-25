@@ -89,23 +89,29 @@
 
 <meta name="description" content="记录每一点一滴。
 
-iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
-12345678910111213141516171819.m文件+ (UIImag">
+hexColor1234```.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
+.h文件
+
+(UIColor ) hexColorWithString: (NSString )str{  NSString *cString = [[str stringByTrimmingCharactersI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录iOS一些通用工具方法(不定时更新)...">
 <meta property="og:url" content="http://yoursite.com/2017/02/25/记录一些常用工具方法/index.html">
 <meta property="og:site_name" content="Daily life">
 <meta property="og:description" content="记录每一点一滴。
 
-iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
-12345678910111213141516171819.m文件+ (UIImag">
-<meta property="og:updated_time" content="2017-02-25T10:05:56.000Z">
+hexColor1234```.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
+.h文件
+
+(UIColor ) hexColorWithString: (NSString )str{  NSString *cString = [[str stringByTrimmingCharactersI">
+<meta property="og:updated_time" content="2017-02-25T10:12:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录iOS一些通用工具方法(不定时更新)...">
 <meta name="twitter:description" content="记录每一点一滴。
 
-iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h文件 (通过创建UIImage的分类实现方法)/*** 通过size生成图片**/+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;
-12345678910111213141516171819.m文件+ (UIImag">
+hexColor1234```.m文件 (通过创建分类的方式)+ (UIColor *) hexColorWithString: (NSString *)str;
+.h文件
+
+(UIColor ) hexColorWithString: (NSString )str{  NSString *cString = [[str stringByTrimmingCharactersI">
 
 
 
@@ -378,10 +384,35 @@ iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h�
         <blockquote>
 <p>记录每一点一滴。</p>
 </blockquote>
-<h4 id="iOS中通过color创建一张纯色的图片并且可以设置大小："><a href="#iOS中通过color创建一张纯色的图片并且可以设置大小：" class="headerlink" title="iOS中通过color创建一张纯色的图片并且可以设置大小："></a>iOS中通过color创建一张纯色的图片并且可以设置大小：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.h文件 (通过创建UIImage的分类实现方法)</div><div class="line">/**</div><div class="line">* 通过size生成图片</div><div class="line">**/</div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color</div><div class="line">&#123;</div><div class="line">    // 准备绘制环境</div><div class="line">    UIGraphicsBeginImageContext(size);</div><div class="line">    // 获取上下文</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    // 设置颜色</div><div class="line">    CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">    // 设置渲染范围</div><div class="line">    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));</div><div class="line">    // 取得图片</div><div class="line">    UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    // 结束绘制</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line"></div><div class="line">    return colorImg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="通过字体大小计算NSString的size-这里未考虑attributes"><a href="#通过字体大小计算NSString的size-这里未考虑attributes" class="headerlink" title="通过字体大小计算NSString的size(这里未考虑attributes)"></a>通过字体大小计算NSString的size(这里未考虑attributes)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.h文件 （通过NSString分类的方式实现）</div><div class="line"></div><div class="line">/**</div><div class="line">*返回值是该字符串所占的size(大小)</div><div class="line">*font：传入的字符串所用的字体(字体大小不一样,显示出来的面积也不同)</div><div class="line">*maxSize：CGSizeMake(MAXFLOAT,MAXFLOAT)</div><div class="line">*/</div><div class="line">-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">/// 实现方式</div><div class="line">-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize</div><div class="line">&#123;</div><div class="line">    NSDictionary *attrs = @&#123;NSFontAttributeName : font&#125;;</div><div class="line">    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="hexColor"><a href="#hexColor" class="headerlink" title="hexColor"></a>hexColor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">.m文件 (通过创建分类的方式)</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str;</div></pre></td></tr></table></figure>
+<p>.h文件</p>
+<ul>
+<li><p>(UIColor <em>) hexColorWithString: (NSString </em>)str<br>{<br>  NSString *cString = [[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];<br>  // String should be 6 or 8 charactersif ([cString length] &lt; 6) return [UIColor blackColor];<br>  // strip 0X if it appearsif ([cString hasPrefix:@”0X”]) cString = [cString substringFromIndex:2];<br>  if ([cString hasPrefix:@”#”]) cString = [cString substringFromIndex:1];<br>  if ([cString length] != 6) return [UIColor blackColor];</p>
+<p>  // Separate into r, g, b substrings<br>  NSRange range;<br>  range.location = 0;<br>  range.length = 2;<br>  NSString <em>rString = [cString substringWithRange:range];<br>  range.location = 2;<br>  NSString </em>gString = [cString substringWithRange:range];<br>  range.location = 4;<br>  NSString *bString = [cString substringWithRange:range];<br>  // Scan values<br>  unsigned int r, g, b;</p>
+<p>  [[NSScanner scannerWithString:rString] scanHexInt:&amp;r];<br>  [[NSScanner scannerWithString:gString] scanHexInt:&amp;g];<br>  [[NSScanner scannerWithString:bString] scanHexInt:&amp;b];</p>
+<p>  return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### iOS中通过color创建一张纯色的图片并且可以设置大小：</div></pre></td></tr></table></figure>
+<p>.h文件 (通过创建UIImage的分类实现方法)<br>/**</p>
+<ul>
+<li>通过size生成图片<br>**/</li>
+</ul>
+<ul>
+<li>(UIImage <em>)createImageWithSize:(CGSize)size color:(UIColor </em>)color;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>.m文件</p>
+<ul>
+<li><p>(UIImage <em>)createImageWithSize:(CGSize)size color:(UIColor </em>)color<br>{<br>  // 准备绘制环境<br>  UIGraphicsBeginImageContext(size);<br>  // 获取上下文<br>  CGContextRef context = UIGraphicsGetCurrentContext();<br>  // 设置颜色<br>  CGContextSetFillColorWithColor(context, [color CGColor]);<br>  // 设置渲染范围<br>  CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));<br>  // 取得图片<br>  UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();<br>  // 结束绘制<br>  UIGraphicsEndImageContext();</p>
+<p>  return colorImg;<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 通过字体大小计算NSString的size(这里未考虑attributes)</div></pre></td></tr></table></figure>
+<p>.h文件 （通过NSString分类的方式实现）</p>
+<p>/<em>*
+</em>返回值是该字符串所占的size(大小)<br><em>font：传入的字符串所用的字体(字体大小不一样,显示出来的面积也不同)
+</em>maxSize：CGSizeMake(MAXFLOAT,MAXFLOAT)<br><em>/<br>-(CGSize)sizeWithFont:(UIFont </em>)font maxSize:(CGSize)maxSize;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">.m文件</div><div class="line"></div><div class="line">/// 实现方式</div><div class="line">-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize</div><div class="line">&#123;</div><div class="line">    NSDictionary *attrs = @&#123;NSFontAttributeName : font&#125;;</div><div class="line">    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -564,7 +595,7 @@ iOS中通过color创建一张纯色的图片并且可以设置大小：12345.h�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS中通过color创建一张纯色的图片并且可以设置大小："><span class="nav-number">1.</span> <span class="nav-text">iOS中通过color创建一张纯色的图片并且可以设置大小：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过字体大小计算NSString的size-这里未考虑attributes"><span class="nav-number">2.</span> <span class="nav-text">通过字体大小计算NSString的size(这里未考虑attributes)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#hexColor"><span class="nav-number">1.</span> <span class="nav-text">hexColor</span></a></li></ol></div>
             
 
           </div>
