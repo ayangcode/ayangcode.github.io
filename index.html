@@ -270,6 +270,156 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/26/关于使用masonry进行动画时需注意的地方/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="阿洋">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Daily life">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Daily life" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/26/关于使用masonry进行动画时需注意的地方/" itemprop="url">
+                  关于使用masonry进行动画时需注意的地方
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-26T19:52:27+08:00">
+                2017-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>2017年02月26日 记录masonry相关使用（不定时更新）</p>
+</blockquote>
+<h4 id="1-注意下图attention-1，在我们添加完视图并且-设置了约束后-若是想要立即获得该视图的frame-或者-想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。"><a href="#1-注意下图attention-1，在我们添加完视图并且-设置了约束后-若是想要立即获得该视图的frame-或者-想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。" class="headerlink" title="1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。"></a>1.注意下图<code>attention_1</code>，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用<code>layoutIfNeeded</code>方法强制进行刷新。</h4><p><img src="http://upload-images.jianshu.io/upload_images/1762016-7f10f55ae7f5f99d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attention1.png"></p>
+<h4 id="2-根据上面要进行动画的视图-在另一个方法中去实现它，在这个方法中，注意下图attention-2-调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention-3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas-updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。"><a href="#2-根据上面要进行动画的视图-在另一个方法中去实现它，在这个方法中，注意下图attention-2-调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention-3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas-updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。" class="headerlink" title="2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图attention_2 调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention_3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas_updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。"></a>2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图<code>attention_2</code> 调用了<code>setNeedsUpdateConstraints</code>这个方法，这是为了提前告诉<code>superView</code>需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是<code>attention_3</code>位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用<code>mas_updateConstraints</code>方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用<code>layoutIfNeeded</code>。这样一个基本的动画就可以实现了。</h4><p><img src="http://upload-images.jianshu.io/upload_images/1762016-cff6e4d754fcc845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attention2_3_4.png"></p>
+<blockquote>
+<p>。。。。待续</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/25/记录一些常用工具方法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -371,17 +521,27 @@
 
       
         
-          <blockquote>
+          
+            <blockquote>
 <p>记录每一点一滴。</p>
 </blockquote>
-<h4 id="hexColor-配色常用"><a href="#hexColor-配色常用" class="headerlink" title="hexColor 配色常用"></a>hexColor 配色常用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.m文件 (通过创建分类的方式)</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/25/记录一些常用工具方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>…</p>
+<blockquote>
+<p>2017年02月25日（扩展category）</p>
+</blockquote>
+<h4 id="hexColor"><a href="#hexColor" class="headerlink" title="hexColor"></a>hexColor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.h文件</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">+ (UIColor *) hexColorWithString: (NSString *)str</div><div class="line">&#123;</div><div class="line">NSString *cString = [[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];</div><div class="line">// String should be 6 or 8 charactersif ([cString length] &lt; 6) return [UIColor blackColor];</div><div class="line">// strip 0X if it appearsif ([cString hasPrefix:@&quot;0X&quot;]) cString = [cString substringFromIndex:2];</div><div class="line">if ([cString hasPrefix:@&quot;#&quot;]) cString = [cString substringFromIndex:1];</div><div class="line">if ([cString length] != 6) return [UIColor blackColor];</div><div class="line"></div><div class="line">// Separate into r, g, b substrings</div><div class="line">NSRange range;</div><div class="line">range.location = 0;</div><div class="line">range.length = 2;</div><div class="line">NSString *rString = [cString substringWithRange:range];</div><div class="line">range.location = 2;</div><div class="line">NSString *gString = [cString substringWithRange:range];</div><div class="line">range.location = 4;</div><div class="line">NSString *bString = [cString substringWithRange:range];</div><div class="line">// Scan values</div><div class="line">unsigned int r, g, b;</div><div class="line"></div><div class="line">[[NSScanner scannerWithString:rString] scanHexInt:&amp;r];</div><div class="line">[[NSScanner scannerWithString:gString] scanHexInt:&amp;g];</div><div class="line">[[NSScanner scannerWithString:bString] scanHexInt:&amp;b];</div><div class="line"></div><div class="line">return [UIColor colorWithRed:((float) r / 255.0f)</div><div class="line">green:((float) g / 255.0f)</div><div class="line">blue:((float) b / 255.0f)</div><div class="line">alpha:1.0f];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="iOS中通过color创建一张纯色的图片并且可以设置大小："><a href="#iOS中通过color创建一张纯色的图片并且可以设置大小：" class="headerlink" title="iOS中通过color创建一张纯色的图片并且可以设置大小："></a>iOS中通过color创建一张纯色的图片并且可以设置大小：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.h文件 (通过创建UIImage的分类实现方法)</div><div class="line">/**</div><div class="line">* 通过size生成图片</div><div class="line">**/</div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">+ (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color</div><div class="line">&#123;</div><div class="line">// 准备绘制环境</div><div class="line">UIGraphicsBeginImageContext(size);</div><div class="line">// 获取上下文</div><div class="line">CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">// 设置颜色</div><div class="line">CGContextSetFillColorWithColor(context, [color CGColor]);</div><div class="line">// 设置渲染范围</div><div class="line">CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));</div><div class="line">// 取得图片</div><div class="line">UIImage *colorImg = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">// 结束绘制</div><div class="line">UIGraphicsEndImageContext();</div><div class="line"></div><div class="line">return colorImg;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="通过字体大小计算NSString的size-这里未考虑其他attributes"><a href="#通过字体大小计算NSString的size-这里未考虑其他attributes" class="headerlink" title="通过字体大小计算NSString的size(这里未考虑其他attributes)"></a>通过字体大小计算NSString的size(这里未考虑其他attributes)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.h文件 （通过NSString分类的方式实现）</div><div class="line"></div><div class="line">/**</div><div class="line">*返回值是该字符串所占的size(大小)</div><div class="line">*font：传入的字符串所用的字体(字体大小不一样,显示出来的面积也不同)</div><div class="line">*maxSize：CGSizeMake(MAXFLOAT,MAXFLOAT)</div><div class="line">*/</div><div class="line">-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.m文件</div><div class="line"></div><div class="line">/// 实现方式</div><div class="line">-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize</div><div class="line">&#123;</div><div class="line">NSDictionary *attrs = @&#123;NSFontAttributeName : font&#125;;</div><div class="line">return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2017年02月26日更新工具类(继承自NSObject)</p>
+</blockquote>
+<h4 id="获取随机数并且可以设置范围"><a href="#获取随机数并且可以设置范围" class="headerlink" title="获取随机数并且可以设置范围"></a>获取随机数并且可以设置范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">+ (int)getRandomNumber:(int)from to:(int)to</div><div class="line">&#123;</div><div class="line">return (int)(from + (arc4random() % (to - from + 1)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="通过文件名获取路径"><a href="#通过文件名获取路径" class="headerlink" title="通过文件名获取路径"></a>通过文件名获取路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/// 根据文件名来获取文件路径(document路径)</div><div class="line">+ (NSString *)dataFilePath:(NSString *)fileName</div><div class="line">&#123;</div><div class="line">NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);</div><div class="line">NSString *documentDirectory = [path objectAtIndex:0];</div><div class="line">return [documentDirectory stringByAppendingPathComponent:fileName];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -606,7 +766,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -624,7 +784,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
