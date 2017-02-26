@@ -89,25 +89,22 @@
 
 <meta name="description" content="2017年02月26日 记录masonry相关使用（不定时更新）
 
-1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。
-2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图attention_2 调用了set">
+1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于使用masonry进行动画时需注意的地方">
 <meta property="og:url" content="http://yoursite.com/2017/02/26/关于使用masonry进行动画时需注意的地方/index.html">
 <meta property="og:site_name" content="Daily life">
 <meta property="og:description" content="2017年02月26日 记录masonry相关使用（不定时更新）
 
-1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。
-2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图attention_2 调用了set">
+1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1762016-7f10f55ae7f5f99d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1762016-cff6e4d754fcc845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-02-26T12:24:46.000Z">
+<meta property="og:updated_time" content="2017-02-26T12:58:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于使用masonry进行动画时需注意的地方">
 <meta name="twitter:description" content="2017年02月26日 记录masonry相关使用（不定时更新）
 
-1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。
-2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图attention_2 调用了set">
+1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1762016-7f10f55ae7f5f99d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -382,6 +379,7 @@
 <p>2017年02月26日 记录masonry相关使用（不定时更新）</p>
 </blockquote>
 <h4 id="1-注意下图attention-1，在我们添加完视图并且-设置了约束后-若是想要立即获得该视图的frame-或者-想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。"><a href="#1-注意下图attention-1，在我们添加完视图并且-设置了约束后-若是想要立即获得该视图的frame-或者-想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。" class="headerlink" title="1.注意下图attention_1，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用layoutIfNeeded方法强制进行刷新。"></a>1.注意下图<code>attention_1</code>，在我们添加完视图并且 设置了约束后 若是想要立即获得该视图的frame 或者 想要进行该视图的动画的话，就必须要在设置完约束后立即调用<code>layoutIfNeeded</code>方法强制进行刷新。</h4><p><img src="http://upload-images.jianshu.io/upload_images/1762016-7f10f55ae7f5f99d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attention1.png"></p>
+<a id="more"></a>
 <h4 id="2-根据上面要进行动画的视图-在另一个方法中去实现它，在这个方法中，注意下图attention-2-调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention-3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas-updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。"><a href="#2-根据上面要进行动画的视图-在另一个方法中去实现它，在这个方法中，注意下图attention-2-调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention-3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas-updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。" class="headerlink" title="2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图attention_2 调用了setNeedsUpdateConstraints这个方法，这是为了提前告诉superView需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是attention_3位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用mas_updateConstraints方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用layoutIfNeeded。这样一个基本的动画就可以实现了。"></a>2.根据上面要进行动画的视图 在另一个方法中去实现它，在这个方法中，注意下图<code>attention_2</code> 调用了<code>setNeedsUpdateConstraints</code>这个方法，这是为了提前告诉<code>superView</code>需要更新约束了但是没告诉他约束是什么（体育课的热身活动🤔）。再来就是<code>attention_3</code>位置，其实这个方法不用调用貌似也行，但masonry官方建议加上🤔。然后呢，再下面添加需要更新的约束。这里有点要注意的地方：请调用<code>mas_updateConstraints</code>方法进行约束的更新。最后呢你添加好了约束了就是刷新你的view让动画展示出来，在动画实现的闭包里再次调用<code>layoutIfNeeded</code>。这样一个基本的动画就可以实现了。</h4><p><img src="http://upload-images.jianshu.io/upload_images/1762016-cff6e4d754fcc845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="attention2_3_4.png"></p>
 <blockquote>
 <p>。。。。待续</p>
